@@ -8,14 +8,19 @@ Se tutto è ok stampare “Accesso riuscito”, altrimenti “Accesso negato”;
  -->
 
  <?php 
+ $name = "";
+ $age = "";
+ $email = "";
+
  $has_all_data = false;
+
 
 if (!empty($_GET["name"]) && !empty($_GET["age"]) && !empty($_GET["email"])) {
 
   
   $name = strlen(trim($_GET["name"])) > 3 ? $_GET["name"] : NULL;
    $age = is_numeric($_GET["age"]) ? $_GET["age"] : NULL ;
-   $email = strpos($_GET["email"], "@") || strpos($_GET["email"], ".") ? $_GET["email"] : NULL;
+   $email = strpos($_GET["email"], "@") && strpos($_GET["email"], ".") ? $_GET["email"] : NULL;
    
    if ($name && $age && $email) $has_all_data = true;
 
@@ -39,17 +44,17 @@ if (!empty($_GET["name"]) && !empty($_GET["age"]) && !empty($_GET["email"])) {
     <!-- Name Field -->
     <div>
       <label for="name">Inserire Nome:</label>
-      <input type="text" id="name" name="name" required />
+      <input type="text" id="name" name="name" value="<?php echo isset($name) ? $name : $_GET['name']  ?>" required />
     </div>
     <!-- Age Field -->
     <div>
       <label for="age">Inserire Età:</label>
-      <input type="number" id="age" name="age" required />
+      <input type="text" id="age" name="age" value="<?php echo isset($age) ? $age : $_GET['age']  ?>" required />
     </div>
     <!-- Mail Field -->
     <div>
       <label for="mail">Inserire Email:</label>
-      <input type="email" id="mail" name="email" required />
+      <input type="text" id="mail" name="email" value="<?php echo isset($email) ? $email : $_GET['email']  ?>" required />
     </div>
     <!-- Submit Btn -->
     <button type="submit">Invia</button>
