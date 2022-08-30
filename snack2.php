@@ -13,7 +13,7 @@ Se tutto è ok stampare “Accesso riuscito”, altrimenti “Accesso negato”;
 if (!empty($_GET["name"]) && !empty($_GET["age"]) && !empty($_GET["email"])) {
 
   
-  $name = strlen($_GET["name"]) > 3 ? $_GET["name"] : NULL;
+  $name = strlen(trim($_GET["name"])) > 3 ? $_GET["name"] : NULL;
    $age = is_numeric($_GET["age"]) ? $_GET["age"] : NULL ;
    $email = strpos($_GET["email"], "@") || strpos($_GET["email"], ".") ? $_GET["email"] : NULL;
    
